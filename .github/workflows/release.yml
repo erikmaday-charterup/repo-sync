@@ -1,0 +1,39 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select Xcode 26 or later
+        run: |
+          XCODE="$(ls -d /Applications/Xcode_2[6-9]*.app 2>/dev/null | sort -V | tail -1 || true)"
+          if [ -z "$XCODE" ]; then
+            echo "No Xcode 26 or later found on this runner" >&2
+            exit 1
+          fi
+          sudo xcode-select -s "$XCODE"
+          xcodebuild -version
+
+      - name: Test
+        run: swift test
+
+      - name: Build
+        run: scripts/build-app.sh --universal --version "${GITHUB_REF_NAME#v}" --no-install
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" .build/RepoSync-*.zip \
+            --title "Repo Sync ${GITHUB_REF_NAME#v}" \
+            --notes-file .github/release-notes.md

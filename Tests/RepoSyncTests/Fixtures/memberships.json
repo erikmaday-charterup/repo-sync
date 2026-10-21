@@ -1,0 +1,4 @@
+[
+  {"state":"active","role":"member","organization":{"login":"example-org","id":10}},
+  {"state":"active","role":"admin","organization":{"login":"another-org","id":11}}
+]

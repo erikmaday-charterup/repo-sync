@@ -1,0 +1,5 @@
+[
+  {"name":"alpha","clone_url":"https://github.com/test-org/alpha.git","size":2048,"archived":false,"owner":{"login":"test-org"}},
+  {"name":"legacy","clone_url":"https://github.com/test-org/legacy.git","size":0,"archived":true,"owner":{"login":"test-org"}},
+  {"name":"beta","clone_url":"https://github.com/test-org/beta.git","size":512000,"archived":false,"owner":{"login":"test-org"}}
+]
