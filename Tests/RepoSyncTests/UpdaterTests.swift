@@ -73,7 +73,7 @@ final class UpdaterTests: XCTestCase {
     }
 
     private func releaseJSON(tag: String, assets: [[String: Any]]? = nil) throws -> Data {
-        let assetList = assets ?? [["id": assetID, "name": "RepoSync-\(tag).zip"]]
+        let assetList = assets ?? [["id": assetID, "name": "Repo-Sync.zip"]]
         let body: [String: Any] = [
             "tag_name": tag,
             "html_url": "https://github.com/erikmaday-charterup/repo-sync/releases/tag/\(tag)",

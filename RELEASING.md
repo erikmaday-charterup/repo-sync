@@ -11,7 +11,7 @@ git tag v1.2.3
 git push origin v1.2.3
 ```
 
-The tag must look like `vX.Y.Z`. The workflow runs `swift test`, builds a universal (Apple silicon and Intel) app with the version from the tag, and publishes a GitHub release named "Repo Sync X.Y.Z" with `RepoSync-X.Y.Z.zip` attached. The release page shows the first-install steps from `.github/release-notes.md`.
+The tag must look like `vX.Y.Z`. The workflow runs `swift test`, builds a universal (Apple silicon and Intel) app with the version from the tag, and publishes a GitHub release named "Repo Sync X.Y.Z" with `Repo-Sync.zip` attached (the README links to `releases/latest/download/Repo-Sync.zip`, so keep that name). The release page shows the first-install steps from `.github/release-notes.md`.
 
 Installed copies find the new release on their own: the updater reads the latest release, compares its tag to the app's `CFBundleShortVersionString`, and swaps in the zip.
 
@@ -23,5 +23,6 @@ The build carries no GitHub credentials. Installed copies borrow the `gh` tool's
 
 ```bash
 scripts/build-app.sh                                         # build and install to ~/Applications
-scripts/build-app.sh --universal --version 1.2.3 --no-install  # build the release zip at .build/RepoSync-1.2.3.zip
+scripts/make-icon.sh  # only after changing scripts/make-icon.swift
+scripts/build-app.sh --universal --version 1.2.3 --no-install  # build the release zip at .build/Repo-Sync.zip
 ```

@@ -34,6 +34,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "$GITHUB_REF_NAME" .build/RepoSync-*.zip \
+          gh release create "$GITHUB_REF_NAME" .build/Repo-Sync.zip \
             --title "Repo Sync ${GITHUB_REF_NAME#v}" \
             --notes-file .github/release-notes.md

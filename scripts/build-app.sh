@@ -47,6 +47,7 @@ BIN_DIR="$(swift build "${BUILD_ARGS[@]}" --show-bin-path)"
 rm -rf "$APP"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 cp "$BIN_DIR/RepoSync" "$APP/Contents/MacOS/RepoSync"
+cp "$ROOT/Resources/AppIcon.icns" "$APP/Contents/Resources/AppIcon.icns"
 
 # SwiftPM records the deployment target as the SDK version, and macOS only gives apps the
 # current system look when the recorded SDK is new enough.
@@ -63,6 +64,7 @@ cat > "$APP/Contents/Info.plist" <<PLIST
     <key>CFBundleName</key><string>Repo Sync</string>
     <key>CFBundleDisplayName</key><string>Repo Sync</string>
     <key>CFBundleExecutable</key><string>RepoSync</string>
+    <key>CFBundleIconFile</key><string>AppIcon</string>
     <key>CFBundlePackageType</key><string>APPL</string>
     <key>CFBundleShortVersionString</key><string>${SHORT_VERSION}</string>
     <key>CFBundleVersion</key><string>${BUNDLE_VERSION}</string>
@@ -76,7 +78,8 @@ PLIST
 codesign --force --sign - --identifier com.erikmaday.RepoSync "$APP"
 
 if [ "$INSTALL" -eq 0 ]; then
-  ZIP="$ROOT/.build/RepoSync-$SHORT_VERSION.zip"
+  # A fixed name lets the README link to releases/latest/download/Repo-Sync.zip.
+  ZIP="$ROOT/.build/Repo-Sync.zip"
   rm -f "$ZIP"
   ditto -c -k --keepParent "$APP" "$ZIP"
   echo "Built $APP"

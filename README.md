@@ -6,7 +6,7 @@ On a schedule (hourly by default) it fetches each repo and fast-forwards its def
 
 ## Get the app
 
-1. Download the `.zip` from the [latest release](https://github.com/erikmaday-charterup/repo-sync/releases/latest) and unzip it.
+1. Download [Repo-Sync.zip](https://github.com/erikmaday-charterup/repo-sync/releases/latest/download/Repo-Sync.zip) and unzip it. It always points at the latest release.
 2. Drag **Repo Sync** into your Applications folder and open it.
 3. macOS will say it can't verify the app. Click **Done**, then open **System Settings**, go to **Privacy & Security**, scroll down, click **Open Anyway** next to Repo Sync, and confirm.
 

@@ -1,6 +1,6 @@
 ## First install
 
-1. Download the `.zip` below and unzip it.
+1. Download [Repo-Sync.zip](https://github.com/erikmaday-charterup/repo-sync/releases/latest/download/Repo-Sync.zip) (also listed under Assets below) and unzip it. The "Source code" files are the code, not the app.
 2. Drag **Repo Sync** into your Applications folder and open it.
 3. macOS will say it can't verify the app. Click **Done**, then open **System Settings**, **Privacy & Security**, scroll down and click **Open Anyway** next to Repo Sync, and confirm.
 
