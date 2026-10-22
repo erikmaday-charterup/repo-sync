@@ -675,9 +675,12 @@ enum OnboardingWindow {
             start: OnboardingModel.resolvedStart(start, setupReady: model.setup?.isReady == true, folderConfigured: model.folderPath != nil)
         )
         let hosting = NSHostingController(rootView: OnboardingView().environmentObject(onboarding).environmentObject(model))
-        hosting.sizingOptions = .preferredContentSize
+        // Letting the window follow SwiftUI's preferred size loops inside AppKit's constraint pass and crashes
+        // builds linked against some SDKs, so measure once and keep the window fixed.
+        hosting.sizingOptions = []
         let window = self.window ?? makeWindow()
         window.contentViewController = hosting
+        window.setContentSize(hosting.view.fittingSize)
         window.center()
         self.window = window
         self.onboarding = onboarding

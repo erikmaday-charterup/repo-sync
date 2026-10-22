@@ -186,6 +186,8 @@ enum ReposWindow {
     static func show(model: AppModel) {
         if window == nil {
             let hosting = NSHostingController(rootView: ReposView().environmentObject(model))
+            // Only the minimum size, so the resizable window never chases SwiftUI's preferred size (see OnboardingWindow).
+            hosting.sizingOptions = [.minSize]
             let newWindow = NSWindow(contentViewController: hosting)
             newWindow.title = "Repos"
             newWindow.styleMask = [.titled, .closable, .miniaturizable, .resizable]
